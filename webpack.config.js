@@ -1,9 +1,12 @@
 var path = require('path');
 
 module.exports = {
-    entry: ['./src/index.js'],
+    entry: {
+        main: ['./src/index.js'],
+        dev: ['./test/index.js']
+    },
     output: {
-        filename: 'main.js',
+        filename: '[name].js',
         path: path.resolve(__dirname, './dist/')
     },
     module: {
