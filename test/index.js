@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { socketConnect } from '../src';
 import configureStore from './configure-store';
 
