@@ -1,5 +1,7 @@
-import React from 'react';
-import ReactDom from 'react-dom';
-import App from './app.js';
+import { socketConnect } from '../src';
+import configureStore from './configure-store';
 
-ReactDom.render(<App />, document.getElementById('react-root'))
+const store = configureStore();
+
+console.log(store.dispatch(socketConnect()));
+console.log(store.getState());
