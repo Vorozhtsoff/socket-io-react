@@ -7,8 +7,7 @@
                     "browsers": ["last 2 versions", "safari 10", "ie 11"]
                 }
             }
-        ],
-        "react"
+        ]
     ],
     "plugins": [
         "babel-plugin-transform-decorators-legacy",
