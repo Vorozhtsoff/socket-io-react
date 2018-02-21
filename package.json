@@ -19,14 +19,20 @@
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
+    "husky": "^0.15.0-rc.8",
     "redux": "^3.7.2",
     "webpack": "^3.11.0",
     "webpack-dev-server": "^2.11.1"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server ./webpack.config.js",
-    "build": "webpack ./webpack.config.js"
+    "build": "webpack ./webpack.config.js",
+    "lint": "eslint ./src ./test"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
   },
   "author": "Eugeny Vorozhtsov",
   "license": "ISC"
