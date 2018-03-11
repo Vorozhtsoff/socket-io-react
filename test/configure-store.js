@@ -1,3 +1,4 @@
+import io from 'socket.io-client';
 import { createStore, compose, applyMiddleware } from 'redux';
 import { createSocketMiddleware } from '../src';
 
@@ -6,14 +7,14 @@ import listeners from './listeners';
 
 
 export default function configureStore(initState = {}) {
-    const EXT = '__REDUX_DEVTOOLS_EXTENSION_COMPOSE__';
+    const EXT_NAME = '__REDUX_DEVTOOLS_EXTENSION_COMPOSE__';
 
-    const composeEnhancers = global[EXT] ? global[EXT]({}) : compose;
+    const composeEnhancers = global[EXT_NAME] ? global[EXT_NAME]({}) : compose;
 
     const store = createStore(
         reducers,
         initState,
-        composeEnhancers(applyMiddleware(createSocketMiddleware('//localhost:3000/', null, listeners)))
+        composeEnhancers(applyMiddleware(createSocketMiddleware(io('//localhost:3000/'), listeners)))
     );
 
     return store;

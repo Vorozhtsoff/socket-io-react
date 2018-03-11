@@ -1,4 +1,3 @@
-import io from 'socket.io-client';
 import { isNill } from './helpers';
 import { SOCKET_EMIT } from './types';
 
@@ -24,8 +23,4 @@ const reduxSocketMiddleware = (socket, listeners) => (store) => {
     };
 };
 
-export default function createSocketMiddleware(endpoint = '/', config = {}, listeners) {
-    const socket = io(endpoint, config);
-
-    return reduxSocketMiddleware(socket, listeners);
-}
+export default reduxSocketMiddleware;
