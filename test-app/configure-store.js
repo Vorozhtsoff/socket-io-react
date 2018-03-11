@@ -1,8 +1,8 @@
+/* eslint-disable */
 import io from 'socket.io-client';
 import { createStore, compose, applyMiddleware } from 'redux';
 import { createSocketMiddleware } from '../src';
 
-import reducers from './reducers';
 import listeners from './listeners';
 
 
@@ -12,7 +12,7 @@ export default function configureStore(initState = {}) {
     const composeEnhancers = global[EXT_NAME] ? global[EXT_NAME]({}) : compose;
 
     const store = createStore(
-        reducers,
+        null,
         initState,
         composeEnhancers(applyMiddleware(createSocketMiddleware(io('//localhost:3000/'), listeners)))
     );

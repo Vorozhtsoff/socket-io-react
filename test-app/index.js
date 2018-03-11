@@ -8,5 +8,3 @@ setInterval(() => {
     console.log('sendData');
     store.dispatch(socketEmit('sendData', { value: Math.random() * 100 }));
 }, 2000);
-
-console.log(store.getState());
