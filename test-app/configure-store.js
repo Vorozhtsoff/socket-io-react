@@ -12,7 +12,7 @@ export default function configureStore(initState = {}) {
     const composeEnhancers = global[EXT_NAME] ? global[EXT_NAME]({}) : compose;
 
     const store = createStore(
-        null,
+        () => ({}),
         initState,
         composeEnhancers(applyMiddleware(createSocketMiddleware(io('//localhost:3000/'), listeners)))
     );

@@ -3,7 +3,7 @@ var path = require('path');
 module.exports = {
     entry: {
         main: ['./src/index.js'],
-        dev: ['./test/index.js']
+        dev: ['./test-app/index.js']
     },
     output: {
         filename: '[name].js',
