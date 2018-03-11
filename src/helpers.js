@@ -2,6 +2,8 @@ export const isArray = value => Array.isArray(value);
 
 export const isNill = value => value == null;
 
+export const isFunc = value => typeof value === 'function';
+
 export const isObject = (value) => {
     if (isNill(value)) {
         return false;
