@@ -1,27 +1,31 @@
 import io from 'socket.io-client';
-import * as actionTypes from './types';
-
-const socketEmit = socket =>
-    (eventName, payload) => socket.emit(eventName, payload);
+import { isNill } from './helpers';
+import { SOCKET_EMIT } from './types';
 
 
-const reduxSocketMiddleware = socket => () => next => (action) => {
-    switch (action.type) {
-        case actionTypes.SOCKET_EMIT: {
-            socketEmit(socket)(action.eventName, action.payload);
-            break;
-        }
-        case action.SOCKET_CONNECT: break;
-        default: break;
+function socketEmit(socket, { eventName, payload }) {
+    if (isNill(eventName) || isNill(payload)) {
+        return null;
     }
 
-    return next(action);
+    return socket.emit(eventName, payload);
+}
+
+
+const reduxSocketMiddleware = (socket, listeners) => (store) => {
+    socket.on('connect', listeners(socket, store));
+
+    return next => (action) => {
+        if (action.type === SOCKET_EMIT) {
+            socketEmit(socket, action);
+        }
+
+        return next(action);
+    };
 };
 
 export default function createSocketMiddleware(endpoint = '/', config = {}, listeners) {
-    const socket = io(endpoint, { autoconnect: false, ...config });
+    const socket = io(endpoint, config);
 
-    socket.on('connection', () => listeners(socket));
-
-    return reduxSocketMiddleware(socket);
+    return reduxSocketMiddleware(socket, listeners);
 }
