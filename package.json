@@ -4,7 +4,6 @@
   "description": "socket.io for react",
   "main": "index.js",
   "dependencies": {
-    "socket.io-client": "^2.0.4"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -22,6 +21,7 @@
     "husky": "^0.15.0-rc.8",
     "lint-staged": "^7.0.0",
     "redux": "^3.7.2",
+    "socket.io-client": "^2.0.4",
     "webpack": "^3.11.0",
     "webpack-dev-server": "^2.11.1"
   },
