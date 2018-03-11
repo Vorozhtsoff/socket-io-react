@@ -1,8 +1,12 @@
 /* eslint-disable no-console */
-import { socketConnect } from '../src';
+import { socketEmit } from '../src';
 import configureStore from './configure-store';
 
 const store = configureStore();
 
-console.log(store.dispatch(socketConnect()));
+setInterval(() => {
+    console.log('sendData');
+    store.dispatch(socketEmit('sendData', { value: Math.random() * 100 }));
+}, 2000);
+
 console.log(store.getState());
