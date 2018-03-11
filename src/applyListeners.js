@@ -7,12 +7,12 @@ const applyListeners = listeners => (socket, store) => () => {
         return warn('listeners must be a object, when key is listener name and value is function');
     }
 
-    return Object.entries(listeners).forEach(([listenerName, fn]) => {
-        if (!isFunc(fn)) {
+    return Object.entries(listeners).forEach(([listenerName, handler]) => {
+        if (!isFunc(handler)) {
             return warn(`${listenerName} value is not a faction`);
         }
 
-        return socket.on(listenerName, fn(store));
+        return socket.on(listenerName, response => handler(response, store));
     });
 };
 
